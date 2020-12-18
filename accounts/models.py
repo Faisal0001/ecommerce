@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
+from django.contrib.auth.models import (AbstractUser, BaseUserManager, AbstractBaseUser)
 
 class UserManager(BaseUserManager):
 	def create_user(self, email, username=None, password=None):
@@ -27,7 +27,7 @@ class UserManager(BaseUserManager):
 
 
 
-class User(AbstractBaseUser):
+class User(AbstractUser):
 	email = models.CharField(max_length=255, unique=True)
 	username = models.CharField(max_length=20)
 	date_joined = models.DateTimeField(auto_now_add=True)
