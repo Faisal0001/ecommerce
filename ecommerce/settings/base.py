@@ -5,8 +5,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-print('base dir',BASE_DIR)
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -39,7 +37,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'rest_auth.registration',
-    'django_rest_passwordreset',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -129,6 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 
 # custom user model
@@ -144,7 +143,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # djangorestframework
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -154,7 +153,7 @@ REST_FRAMEWORK = {
 # django rest auth
 REST_AUTH_SERIALIZERS = {
     'PASSWORD_RESET_SERIALIZER':
-        'accounts.serializers.PasswordResetSerializer',
+        'accounts.serializers.CustomPasswordResetSerializer',
 }
 
 # Email Password Reset
